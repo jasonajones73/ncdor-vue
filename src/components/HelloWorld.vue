@@ -8,12 +8,13 @@
           chips
           label="Select a North Carolina county:"
           multiple
+          deletable-chips
           outlined
         ></v-select>
       </v-col>
     </v-row>
     <v-data-table
-      :items="collectionsRefunds"
+      :items="filteredData"
       :headers="headers"
       item-key="county"
       sort-by="county"
@@ -61,11 +62,16 @@ import { mapState } from "vuex";
 export default {
   name: "HelloWorld",
   computed: {
-    ...mapState(["collectionsRefunds", "countyChoices"])
+    ...mapState(["collectionsRefunds", "countyChoices"]),
+    filteredData() {
+      return this.collectionsRefunds.filter(item =>
+        this.selectedCounty.includes(item.county)
+      );
+    }
   },
   data() {
     return {
-      selectedCounty: [],
+      selectedCounty: ["Wake", "Mecklenburg", "Guilford"],
       headers: [
         { text: "County", value: "county" },
         { text: "Fiscal Year", value: "fiscal_year" },
