@@ -6,11 +6,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    collectionsRefunds: []
+    collectionsRefunds: [],
+    countyChoices: []
   },
   mutations: {
     UPDATE_COLLECTIONS_REFUNDS(state, ncdorData) {
       state.collectionsRefunds = ncdorData;
+      let counties = [];
+      ncdorData.forEach(item => counties.push(item.county));
+      state.countyChoices = Array.from(new Set(counties));
     }
   },
   actions: {

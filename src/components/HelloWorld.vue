@@ -1,5 +1,17 @@
 <template>
   <v-container>
+    <v-row>
+      <v-col>
+        <v-select
+          v-model="selectedCounty"
+          :items="countyChoices"
+          chips
+          label="Select a North Carolina county:"
+          multiple
+          outlined
+        ></v-select>
+      </v-col>
+    </v-row>
     <v-data-table
       :items="collectionsRefunds"
       :headers="headers"
@@ -49,10 +61,11 @@ import { mapState } from "vuex";
 export default {
   name: "HelloWorld",
   computed: {
-    ...mapState(["collectionsRefunds"])
+    ...mapState(["collectionsRefunds", "countyChoices"])
   },
   data() {
     return {
+      selectedCounty: [],
       headers: [
         { text: "County", value: "county" },
         { text: "Fiscal Year", value: "fiscal_year" },
