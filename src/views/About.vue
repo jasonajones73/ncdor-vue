@@ -1,5 +1,12 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <v-container>
+    <v-card>
+      <v-card-title>
+        About
+      </v-card-title>
+      <v-card-text>
+        This is where information about the site would be inserted.
+      </v-card-text>
+    </v-card>
+  </v-container>
 </template>

@@ -7,6 +7,10 @@
 
       <v-spacer></v-spacer>
 
+      <v-btn href="/ncdor-vue/" text>Home</v-btn>
+      <v-btn href="/ncdor-vue/explore" text>Explore</v-btn>
+      <v-btn href="/ncdor-vue/about" text>About</v-btn>
+
       <v-btn href="https://github.com/jasonajones73/ncdor" target="_blank" text>
         <span class="mr-2">GitHub Repo</span>
         <v-icon>mdi-github</v-icon>
