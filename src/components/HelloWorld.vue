@@ -2,25 +2,24 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-select
-          v-model="selectedCounty"
-          :items="countyChoices"
-          chips
-          label="Select a North Carolina county:"
-          deletable-chips
-          multiple
-          outlined
-        ></v-select>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
         <v-card class="mx-auto" min-height="200" hover>
           <chart
             :options="chartOptions"
             style="width: 100%;"
             autoresize
           ></chart>
+          <v-btn
+            dark
+            fab
+            top
+            left
+            absolute
+            small
+            color="pink"
+            @click.stop="drawer = !drawer"
+          >
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
         </v-card>
       </v-col>
     </v-row>
@@ -64,6 +63,22 @@
         }}
       </template>
     </v-data-table>
+    <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-container>
+        <v-row>
+          <v-col>
+            <v-select
+              v-model="selectedCounty"
+              :items="countyChoices"
+              chips
+              label="Select a North Carolina county:"
+              deletable-chips
+              multiple
+            ></v-select>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-navigation-drawer>
   </v-container>
 </template>
 
@@ -109,9 +124,6 @@ export default {
     },
     chartOptions() {
       return {
-        title: {
-          text: "North Carolina Net Collections"
-        },
         legend: {
           type: "plain",
           show: true
@@ -147,6 +159,7 @@ export default {
   data() {
     return {
       selectedCounty: ["Wake"],
+      drawer: null,
       headers: [
         { text: "County", value: "county" },
         { text: "Fiscal Year", value: "fiscal_year" },
