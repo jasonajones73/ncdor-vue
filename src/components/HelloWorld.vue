@@ -2,24 +2,37 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-card class="mx-auto" min-height="200" hover>
+        <v-card class="mx-auto" hover>
+          <v-card-title>County selection</v-card-title>
+          <v-card-text
+            >Click the plus button on this card to open the county selection
+            drawer. You may select one or multiple counties in NC to populate
+            the chart and data table.</v-card-text
+          >
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              dark
+              fab
+              right
+              small
+              color="pink"
+              @click.stop="drawer = !drawer"
+            >
+              <v-icon>mdi-plus</v-icon>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-card class="mx-auto" hover>
           <chart
             :options="chartOptions"
             style="width: 100%;"
             autoresize
           ></chart>
-          <v-btn
-            dark
-            fab
-            top
-            left
-            absolute
-            small
-            color="pink"
-            @click.stop="drawer = !drawer"
-          >
-            <v-icon>mdi-plus</v-icon>
-          </v-btn>
         </v-card>
       </v-col>
     </v-row>
@@ -67,14 +80,14 @@
       <v-container>
         <v-row>
           <v-col>
-            <v-select
+            <v-autocomplete
               v-model="selectedCounty"
               :items="countyChoices"
               chips
-              label="Select a North Carolina county:"
+              label="Select one or more counties:"
               deletable-chips
               multiple
-            ></v-select>
+            ></v-autocomplete>
           </v-col>
         </v-row>
       </v-container>
