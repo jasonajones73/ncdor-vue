@@ -1,4 +1,5 @@
 module.exports = {
   transpileDependencies: ["vuetify"],
-  publicPath: "/ncdor-vue/"
+  publicPath: "https://jasonajones73.github.io/ncdor-vue/",
+  baseUrl: "/ncdor-vue/"
 };
