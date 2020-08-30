@@ -1,13 +1,11 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-toolbar-title
-          ><v-btn text rounded href="/ncdor-vue/#/"
-            >NC Local Government Sales Tax Data</v-btn
-          ></v-toolbar-title
-        >
-      </div>
+      <v-toolbar-title
+        ><v-btn text rounded href="/ncdor-vue/#/"
+          >NC Sales Tax Data</v-btn
+        ></v-toolbar-title
+      >
 
       <v-spacer></v-spacer>
 
