@@ -3,23 +3,25 @@
     <v-row>
       <v-col>
         <v-card class="mx-auto" hover>
-          <v-card-title>County selection</v-card-title>
+          <v-card-title>Explore the Data</v-card-title>
           <v-card-text
-            >Click the plus button on this card to open the county selection
-            drawer. You may select one or multiple counties in NC to populate
-            the chart and data table.</v-card-text
+            >Click the plus button on this card to open the county and variable
+            selection drawer. You may select Net Collections, Gross Collections,
+            Refunds, or Foreign Collections to display in the chart. You may
+            also select one or multiple counties in NC to populate the chart and
+            the data table.</v-card-text
           >
           <v-card-actions>
-            <v-spacer></v-spacer>
             <v-btn
+              class="align-center"
               dark
-              fab
-              right
+              width="100%"
               small
               color="pink"
               @click.stop="drawer = !drawer"
             >
-              <v-icon>mdi-plus</v-icon>
+              <v-icon class="mr-1">mdi-chart-box-plus-outline</v-icon>Make
+              Selections
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -80,6 +82,15 @@
       <v-container>
         <v-row>
           <v-col>
+            <v-select
+              v-model="selectedVariable"
+              :items="selectOptions"
+              label="Select the variable you would like to display in the chart:"
+            ></v-select>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
             <v-autocomplete
               v-model="selectedCounty"
               :items="countyChoices"
@@ -114,7 +125,7 @@ export default {
     },
     chartData() {
       let data = [];
-      this.filteredData.forEach(item => data.push(item.net_collections));
+      this.filteredData.forEach(item => data.push(item[this.selectedVariable]));
       return data;
     },
     multiSeriesData() {
@@ -124,7 +135,7 @@ export default {
           item => item.county == this.selectedCounty[i]
         );
         let chartData = [];
-        newData.forEach(item => chartData.push(item.net_collections));
+        newData.forEach(item => chartData.push(item[this.selectedVariable]));
         let chartSeries = {
           type: "line",
           name: `${this.selectedCounty[i]} County`,
@@ -172,6 +183,7 @@ export default {
   data() {
     return {
       selectedCounty: ["Wake"],
+      selectedVariable: "net_collections",
       drawer: null,
       headers: [
         { text: "County", value: "county" },
@@ -181,6 +193,12 @@ export default {
         { text: "Foreign Collections", value: "foreign_collections" },
         { text: "Refunds", value: "refunds" },
         { text: "Net Collections", value: "net_collections" }
+      ],
+      selectOptions: [
+        { text: "Net Collections", value: "net_collections" },
+        { text: "Gross Collections", value: "gross_collections" },
+        { text: "Foreign Collections", value: "foreign_collections" },
+        { text: "Refunds", value: "refunds" }
       ]
     };
   }
