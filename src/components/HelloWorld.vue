@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-card class="mx-auto" hover>
+        <v-card hover>
           <v-card-title>Explore the Data</v-card-title>
           <v-card-text
             >Click the plus button on this card to open the county and variable
@@ -29,7 +29,13 @@
     </v-row>
     <v-row>
       <v-col>
-        <chart :options="chartOptions" style="width: 100%;" autoresize></chart>
+        <v-card>
+          <chart
+            :options="chartOptions"
+            style="width: 100%;"
+            autoresize
+          ></chart>
+        </v-card>
       </v-col>
     </v-row>
     <v-data-table
@@ -153,15 +159,38 @@ export default {
         yAxis: {
           type: "value",
           show: true,
+          axisTick: {
+            show: false
+          },
           axisLabel: {
-            formatter: "${value}"
+            show: false
+          },
+          axisLine: {
+            show: false
           }
         },
+        dataZoom: [
+          {
+            type: "slider",
+            show: true
+          }
+        ],
         series: this.multiSeriesData,
         tooltip: {
           show: true,
           trigger: "axis",
-          triggerOn: "mousemove"
+          triggerOn: "mousemove",
+          formatter: function(params) {
+            let newTooltip = params[0].name + "</br>";
+            for (let i = 0; i < params.length; i++) {
+              let val = params[i].value.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD"
+              });
+              newTooltip += `${params[i].marker} ${params[i].seriesName}: ${val} </br>`;
+            }
+            return newTooltip;
+          }
         },
         toolbox: {
           show: true,
