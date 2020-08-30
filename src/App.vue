@@ -2,18 +2,47 @@
   <v-app>
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
-        <v-toolbar-title>NC Local Government Sales Tax Data</v-toolbar-title>
+        <v-toolbar-title
+          ><v-btn text rounded href="/ncdor-vue/#/"
+            >NC Local Government Sales Tax Data</v-btn
+          ></v-toolbar-title
+        >
       </div>
 
       <v-spacer></v-spacer>
 
-      <v-btn href="/ncdor-vue/#/" text>Home</v-btn>
-      <v-btn href="/ncdor-vue/#/explore" text>Explore</v-btn>
-      <v-btn href="/ncdor-vue/#/about" text>About</v-btn>
+      <v-btn
+        v-if="!mainDrawer"
+        dark
+        fab
+        small
+        color="white"
+        @click.stop="mainDrawer = !mainDrawer"
+      >
+        <v-icon color="primary">mdi-dots-vertical</v-icon>
+      </v-btn>
 
-      <v-btn href="https://github.com/jasonajones73/ncdor" target="_blank" text>
-        <span class="mr-2">GitHub Repo</span>
-        <v-icon>mdi-github</v-icon>
+      <v-btn
+        v-if="mainDrawer"
+        dark
+        fab
+        small
+        color="white"
+        @click.stop="mainDrawer = !mainDrawer"
+      >
+        <v-icon color="primary">mdi-dots-horizontal</v-icon>
+      </v-btn>
+
+      <v-divider class="mx-2" vertical></v-divider>
+
+      <v-btn
+        href="https://github.com/jasonajones73/ncdor"
+        target="_blank"
+        fab
+        small
+        color="white"
+      >
+        <v-icon color="primary" large>mdi-github</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -27,6 +56,38 @@
         </v-col>
       </v-row>
     </v-footer>
+    <v-navigation-drawer v-model="mainDrawer" absolute temporary>
+      <v-list>
+        <v-list-item
+          ><v-btn rounded width="100%" href="/ncdor-vue/#/" text
+            >Home</v-btn
+          ></v-list-item
+        >
+        <v-divider></v-divider>
+        <v-list-item>
+          <v-btn rounded width="100%" href="/ncdor-vue/#/explore" text
+            >Explore</v-btn
+          ></v-list-item
+        >
+        <v-divider></v-divider>
+        <v-list-item
+          ><v-btn rounded width="100%" href="/ncdor-vue/#/about" text
+            >About</v-btn
+          ></v-list-item
+        >
+        <v-divider></v-divider>
+        <v-list-item
+          ><v-btn
+            rounded
+            width="100%"
+            href="https://github.com/jasonajones73/ncdor"
+            target="_blank"
+            text
+            ><v-icon class="mr-1">mdi-github</v-icon>GitHub Repo</v-btn
+          ></v-list-item
+        >
+      </v-list>
+    </v-navigation-drawer>
   </v-app>
 </template>
 
@@ -44,7 +105,7 @@ export default {
   components: {},
 
   data: () => ({
-    //
+    mainDrawer: null
   }),
   methods: {
     ...mapActions(["fetchCollectionsRefunds"])
