@@ -29,19 +29,12 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-card class="mx-auto" hover>
-          <chart
-            :options="chartOptions"
-            style="width: 100%;"
-            autoresize
-          ></chart>
-        </v-card>
+        <chart :options="chartOptions" style="width: 100%;" autoresize></chart>
       </v-col>
     </v-row>
     <v-data-table
       :items="filteredData"
       :headers="headers"
-      item-key="county"
       sort-by="county"
       class="elevation-1"
     >
@@ -140,7 +133,8 @@ export default {
           type: "line",
           name: `${this.selectedCounty[i]} County`,
           data: chartData,
-          smooth: true
+          smooth: true,
+          style: "currency"
         };
         multiData.push(chartSeries);
       }

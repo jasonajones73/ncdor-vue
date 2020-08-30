@@ -6,7 +6,7 @@
       Department of Revenue (NC DOR) local government sales tax data.
     </p>
     <v-list>
-      <v-header>In this site, you should find:</v-header>
+      <h4>In this site, you should find:</h4>
       <v-list-item>
         <v-list-item-icon
           ><v-icon color="primary"
@@ -53,7 +53,24 @@
             >
           </template></v-expansion-panel-header
         >
-        <v-expansion-panel-content>Content goes here</v-expansion-panel-content>
+        <v-expansion-panel-content
+          ><ul>
+            <li>
+              <a
+                href="https://github.com/jasonajones73/ncdor/tree/master/files/monthly_sales"
+                target="_blank"
+                >Consolidated Excel Files</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://raw.githubusercontent.com/jasonajones73/ncdor/master/data/monthly_sales.csv"
+                target="_blank"
+                >Single Tidy Data File</a
+              >
+            </li>
+          </ul></v-expansion-panel-content
+        >
       </v-expansion-panel>
       <v-expansion-panel>
         <v-expansion-panel-header
@@ -63,7 +80,24 @@
             >
           </template></v-expansion-panel-header
         >
-        <v-expansion-panel-content>Content goes here</v-expansion-panel-content>
+        <v-expansion-panel-content
+          ><ul>
+            <li>
+              <a
+                href="https://github.com/jasonajones73/ncdor/tree/master/files/sales_and_use"
+                target="_blank"
+                >Consolidated Excel Files</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://raw.githubusercontent.com/jasonajones73/ncdor/master/data/sales_and_use.csv"
+                target="_blank"
+                >Single Tidy Data File</a
+              >
+            </li>
+          </ul></v-expansion-panel-content
+        >
       </v-expansion-panel>
       <v-expansion-panel>
         <v-expansion-panel-header
@@ -75,7 +109,38 @@
             >
           </template></v-expansion-panel-header
         >
-        <v-expansion-panel-content>Content goes here</v-expansion-panel-content>
+        <v-expansion-panel-content
+          ><ul>
+            <li>
+              <a
+                href="https://github.com/jasonajones73/ncdor/tree/master/files/distributions"
+                target="_blank"
+                >Consolidated Excel Files</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://raw.githubusercontent.com/jasonajones73/ncdor/master/data/collections_refunds.csv"
+                target="_blank"
+                >Single Tidy Collections/Refunds Data File</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://raw.githubusercontent.com/jasonajones73/ncdor/master/data/article_overview.csv"
+                target="_blank"
+                >Single Tidy Article Overview Data File</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://raw.githubusercontent.com/jasonajones73/ncdor/master/data/summary.csv"
+                target="_blank"
+                >Single Tidy Summary Data File</a
+              >
+            </li>
+          </ul></v-expansion-panel-content
+        >
       </v-expansion-panel>
     </v-expansion-panels>
   </v-container>
