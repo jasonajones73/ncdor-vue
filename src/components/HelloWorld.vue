@@ -77,7 +77,7 @@
         }}
       </template>
     </v-data-table>
-    <v-navigation-drawer v-model="drawer" absolute temporary>
+    <v-navigation-drawer v-model="drawer" temporary fixed>
       <v-container>
         <v-row>
           <v-col>

@@ -54,7 +54,7 @@
         </v-col>
       </v-row>
     </v-footer>
-    <v-navigation-drawer v-model="mainDrawer" absolute temporary>
+    <v-navigation-drawer v-model="mainDrawer" fixed temporary>
       <v-list>
         <v-list-item
           ><v-btn rounded width="100%" href="/ncdor-vue/#/" text
