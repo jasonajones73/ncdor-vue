@@ -47,13 +47,6 @@
     <v-main>
       <router-view></router-view>
     </v-main>
-    <v-footer color="primary" padless>
-      <v-row justify="center" no-gutters>
-        <v-col class="primary py-4 text-center white--text" cols="12">
-          {{ new Date().getFullYear() }} — <strong>Jason Jones</strong>
-        </v-col>
-      </v-row>
-    </v-footer>
     <v-navigation-drawer v-model="mainDrawer" fixed temporary>
       <v-list>
         <v-list-item
@@ -86,6 +79,27 @@
         >
       </v-list>
     </v-navigation-drawer>
+    <v-footer color="primary" padless>
+      <v-row justify="center" no-gutters>
+        <v-col class="primary py-4 text-center white--text" cols="12">
+          Created by Jason Jones with much &#9829; for all of the open source
+          projects that make this site possible:
+          <br />
+          <a href="https://vuejs.org/" target="_blank" style="color: white;"
+            >Vue.js</a
+          >,
+          <a
+            href="https://echarts.apache.org/en/index.html"
+            target="_blank"
+            style="color: white;"
+            >Apache ECharts</a
+          >, and
+          <a href="https://vuetifyjs.com/" target="_blank" style="color: white;"
+            >Vuetify</a
+          >.
+        </v-col>
+      </v-row>
+    </v-footer>
   </v-app>
 </template>
 
