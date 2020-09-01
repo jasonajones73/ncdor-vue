@@ -30,6 +30,9 @@
     <v-row>
       <v-col>
         <v-card>
+          <v-card-title>{{
+            selectOptions.filter(item => item.value == selectedVariable)[0].text
+          }}</v-card-title>
           <chart
             :options="chartOptions"
             style="width: 100%;"
@@ -38,6 +41,68 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col>
+        <h3>
+          State Average:
+          {{
+            stateAverage.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD"
+            })
+          }}
+        </h3>
+        <h3>
+          State Median:
+          {{
+            stateMed.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD"
+            })
+          }}
+        </h3>
+      </v-col>
+    </v-row>
+    <v-divider></v-divider>
+    <v-row>
+      <v-col>
+        <h3>County Quick Comparison:</h3>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="4" v-for="(item, index) in selectedCounty" :key="index">
+        <v-card>
+          <v-card-title>{{ item }}</v-card-title>
+          <v-card-text
+            ><h4>
+              Average:
+              {{
+                average[index].toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD"
+                })
+              }}
+            </h4>
+            <h4>
+              Median:
+              {{
+                med[index].toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD"
+                })
+              }}
+            </h4>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-divider></v-divider>
+    <v-row>
+      <v-col>
+        <h3>Data Table of Selected Counties:</h3>
+      </v-col>
+    </v-row>
+
     <v-data-table
       :items="filteredData"
       :headers="headers"
@@ -107,6 +172,7 @@
 
 <script>
 import { mapState } from "vuex";
+import { mean, median } from "simple-statistics";
 
 export default {
   name: "HelloWorld",
@@ -201,6 +267,30 @@ export default {
           }
         }
       };
+    },
+    average() {
+      let average = [];
+      this.multiSeriesData.forEach(item => average.push(mean(item.data)));
+      return average;
+    },
+    med() {
+      let med = [];
+      this.multiSeriesData.forEach(item => med.push(median(item.data)));
+      return med;
+    },
+    stateAverage() {
+      let average = [];
+      this.collectionsRefunds.forEach(item =>
+        average.push(item[this.selectedVariable])
+      );
+      return mean(average);
+    },
+    stateMed() {
+      let med = [];
+      this.collectionsRefunds.forEach(item =>
+        med.push(item[this.selectedVariable])
+      );
+      return median(med);
     }
   },
   data() {
