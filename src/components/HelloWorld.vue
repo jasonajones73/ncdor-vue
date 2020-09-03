@@ -70,7 +70,12 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="4" v-for="(item, index) in selectedCounty" :key="index">
+      <v-col
+        cols="4"
+        v-for="(item, index) in selectedCounty"
+        :key="index"
+        style="min-width: fit-content;"
+      >
         <v-card>
           <v-card-title>{{ item }}</v-card-title>
           <v-card-text
