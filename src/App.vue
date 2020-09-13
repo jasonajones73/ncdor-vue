@@ -9,26 +9,10 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn
-        v-if="!mainDrawer"
-        dark
-        fab
-        small
-        color="white"
-        @click.stop="mainDrawer = !mainDrawer"
-      >
-        <v-icon color="primary">mdi-dots-vertical</v-icon>
-      </v-btn>
-
-      <v-btn
-        v-if="mainDrawer"
-        dark
-        fab
-        small
-        color="white"
-        @click.stop="mainDrawer = !mainDrawer"
-      >
-        <v-icon color="primary">mdi-dots-horizontal</v-icon>
+      <v-btn color="white" fab small @click.stop="mainDrawerChange">
+        <v-icon color="primary" :class="iconRotateChange" large
+          >mdi-menu-swap</v-icon
+        >
       </v-btn>
 
       <v-divider class="mx-2" vertical></v-divider>
@@ -108,7 +92,6 @@ import { mapActions } from "vuex";
 
 export default {
   name: "App",
-
   //dispatching on create from here so it doesn't dispatch every time a component is created on load
   created() {
     this.$store.dispatch("fetchCollectionsRefunds");
@@ -117,10 +100,29 @@ export default {
   components: {},
 
   data: () => ({
-    mainDrawer: null
+    mainDrawer: false
   }),
+  computed: {
+    iconRotateChange() {
+      return this.mainDrawer ? "iconDown" : "iconUp";
+    }
+  },
   methods: {
-    ...mapActions(["fetchCollectionsRefunds"])
+    ...mapActions(["fetchCollectionsRefunds"]),
+    mainDrawerChange() {
+      this.mainDrawer = !this.mainDrawer;
+    }
   }
 };
 </script>
+<style>
+.iconUp {
+  transform: rotate(0deg);
+  transition: transform 2s linear;
+}
+
+.iconDown {
+  transform: rotate(90deg);
+  transition: transform 2s linear;
+}
+</style>
